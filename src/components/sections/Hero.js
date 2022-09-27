@@ -6,6 +6,9 @@ import Button from '../elements/Button';
 import Image from '../elements/Image';
 import Modal from '../elements/Modal';
 
+//import Guide1 from './views/Guide1';
+import {Link } from "react-router-dom";
+
 const propTypes = {
   ...SectionProps.types
 }
@@ -65,16 +68,13 @@ const Hero = ({
             </h1>
             <div className="container-xs">
               <p className="m-0 mb-32 reveal-from-bottom" data-reveal-delay="400">
-                Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.
+                Helping you electrify your life!
                 </p>
               <div className="reveal-from-bottom" data-reveal-delay="600">
                 <ButtonGroup>
-                  <Button tag="a" color="primary" wideMobile href="https://cruip.com/">
+                  <Link to= "/Guide1"><Button tag="a" color="primary">
                     Get started
-                    </Button>
-                  <Button tag="a" color="dark" wideMobile href="https://github.com/cruip/open-react-template/">
-                    View on Github
-                    </Button>
+                    </Button></Link> 
                 </ButtonGroup>
               </div>
             </div>
