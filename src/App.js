@@ -18,6 +18,7 @@ import Parts from './views/Parts';
 import RecordList from "./components/recordList";
 import Create from "./components/create";
 import Edit from "./components/edit";
+//import Navbar from "./components/navbar";
 
 // Initialize Google Analytics
 ReactGA.initialize(process.env.REACT_APP_GA_CODE);
@@ -44,16 +45,19 @@ const App = () => {
     <ScrollReveal
       ref={childRef}
       children={() => (
+        // Layout default tag wraps these pages in the default layout which is the header and footer specified in the layoutdefault.js file
+          <LayoutDefault>
         <Routes>
-           <Route path="/" element={<RecordList/>} layout={LayoutDefault} />
-           <Route path="/edit/:id" element={<Edit/>} layout={LayoutDefault} />
-           <Route path="/create" element={<Create/>} layout={LayoutDefault} />
-          <Route path="/r" element={<Home/>} layout={LayoutDefault} />
-          <Route path="/Guide1" element={<Guide1/>} layout={LayoutDefault} />
-          <Route path="/FavoriteBikes" element={<FavoriteBikes/>} layout={LayoutDefault} />
-          <Route path="/Parts" element={<Parts/>} layout={LayoutDefault} />
-          <Route path="/ConversionKits" element={<ConversionKits/>} layout={LayoutDefault} />
+           <Route path="/" element={<RecordList/>} />
+           <Route path="/edit/:id" element={<Edit/>} />
+           <Route path="/create" element={<Create/>} />
+          <Route path="/r" element={<Home/>}/>
+          <Route path="/Guide1" element={<Guide1/>} />
+          <Route path="/FavoriteBikes" element={<FavoriteBikes/>} />
+          <Route path="/Parts" element={<Parts/>} />
+          <Route path="/ConversionKits" element={<ConversionKits/>} />
         </Routes>
+        </LayoutDefault>
       )} />
   );
 }
