@@ -6,7 +6,7 @@ export const products = [
       url: '#',
       submitterAvatarUrl:
         'https://avataaars.io/?avatarStyle=Circle&topType=LongHairNotTooLong&accessoriesType=Prescription01&hairColor=Brown&facialHairType=MoustacheMagnum&facialHairColor=BrownDark&clotheType=Overall&clotheColor=Gray01&eyeType=Squint&eyebrowType=SadConcerned&mouthType=Grimace&skinColor=Tanned',
-      productImageUrl: 'https://via.placeholder.com/250'
+      productImageUrl: 'https://media.wired.com/photos/5ecebf0d9948303154121fba/master/w_2240,c_limit/Gear-Propella-eBike.jpg'
     },
     {
       id: 2,
@@ -15,7 +15,7 @@ export const products = [
       url: '#',
       submitterAvatarUrl:
         'https://avataaars.io/?avatarStyle=Circle&topType=LongHairNotTooLong&accessoriesType=Prescription01&hairColor=Brown&facialHairType=MoustacheMagnum&facialHairColor=BrownDark&clotheType=Overall&clotheColor=Gray01&eyeType=Squint&eyebrowType=SadConcerned&mouthType=Grimace&skinColor=Tanned',
-      productImageUrl: 'https://via.placeholder.com/250'
+      productImageUrl: 'https://media.wired.com/photos/5ecebf0d9948303154121fba/master/w_2240,c_limit/Gear-Propella-eBike.jpg'
     },
     {
       id: 3,
@@ -24,8 +24,8 @@ export const products = [
       url: '#',
       submitterAvatarUrl:
         'https://avataaars.io/?avatarStyle=Circle&topType=LongHairNotTooLong&accessoriesType=Prescription01&hairColor=Brown&facialHairType=MoustacheMagnum&facialHairColor=BrownDark&clotheType=Overall&clotheColor=Gray01&eyeType=Squint&eyebrowType=SadConcerned&mouthType=Grimace&skinColor=Tanned',
-      productImageUrl: 'https://via.placeholder.com/250'
+      productImageUrl: 'https://media.wired.com/photos/5ecebf0d9948303154121fba/master/w_2240,c_limit/Gear-Propella-eBike.jpg'
     }
   ];
   
-  export const seffy = 'joeSeffy1';
+  export const mypicks = "Here's what we picked for you:";

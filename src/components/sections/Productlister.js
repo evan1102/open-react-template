@@ -5,10 +5,8 @@ import ButtonGroup from '../elements/ButtonGroup';
 import Button from '../elements/Button';
 import Image from '../elements/Image';
 import Modal from '../elements/Modal';
-import { products, seffy } from '../elements/dummyData.js';
+import { products, mypicks } from '../elements/dummyData.js';
 
-//import Guide1 from './views/Guide1';
-import {Link } from "react-router-dom";
 
 const propTypes = {
   ...SectionProps.types
@@ -105,7 +103,7 @@ const ProductLister = ({
         <div className={innerClasses}>
           <div className="hero-content">
           <div>
-      <h1>{seffy}</h1>
+      <h1>{mypicks}</h1>
       <ProductList products={products} />
     </div>
     </div>

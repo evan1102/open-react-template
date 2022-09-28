@@ -1,0 +1,35 @@
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+// Select the database to use.
+use('bikes');
+
+// The drop() command destroys all data from a collection.
+// Make sure you run it against the correct database and collection.
+db.models.drop();
+
+// Insert a few documents into the sales collection.
+db.sales.insertOne(
+  { '_id': 1, 'Manufacturer': 'Rad Power Bikes', 'Category': "Fat-Tire / Off-Road", 'Frame': 'High-Step', 'Class:=': '2',	'Top Assist Speed': 20
+  'Drive Type': "Rear hub",	'Motor Power (W)':750,	'Bike Weight with battery (lbs)':81.1,	'Frame Size (in)':17,	'Low Rider Height (in)':64,	
+  'High Rider Height (in)':74,	'Min Price ($)':1599,	'Color Options':['grey'],	'Picture URL':	'https://cdn.shopify.com/s/files/1/0799/9645/products/Rover6HS_Charcoal_side_600x.png?v=1652135901',
+  'Weight Limit (lbs)': 275,	'Max Range (mi)':45,	'Battery Capacity (Wh)': "589-672",	'Controller (V)':48,	"Gear #":7,	'Throttle': 'Half-Twist',
+  'Brake Type': 'Hydraulic Disk',	'Fork':'RST spring fork, 60 mm travel with lockout and preload adjustment, 277 mm steerer tube',
+  'Standard Accessories': ['LED Headlights', 'integrated taillight with brake light', 'front and rear fenders']
+ });
+
+// Run a find command to view items sold on April 4th, 2014.
+db.sales.find({ date: { $gte: new Date('2014-04-04'), $lt: new Date('2014-04-05') } });
+
+// Build an aggregation to view total sales for each product in 2014.
+const aggregation = [
+  { $match: { date: { $gte: new Date('2014-01-01'), $lt: new Date('2015-01-01') } } },
+  { $group: { _id: '$item', totalSaleAmount: { $sum: { $multiply: [ '$price', '$quantity' ] } } } }
+];
+
+// Run the aggregation and open a cursor to the results.
+// Use toArray() to exhaust the cursor to return the whole result set.
+// You can use hasNext()/next() to iterate through the cursor page by page.
+db.sales.aggregate(aggregation);

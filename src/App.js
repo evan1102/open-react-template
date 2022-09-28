@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { useLocation, Switch } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import AppRoute from './utils/AppRoute';
 import ScrollReveal from './utils/ScrollReveal';
 import ReactGA from 'react-ga';
@@ -13,6 +13,11 @@ import Guide1 from './views/Guide1';
 import FavoriteBikes from './views/FavoriteBikes';
 import ConversionKits from './views/ConversionKits';
 import Parts from './views/Parts';
+
+// Database
+import RecordList from "./components/recordList";
+import Create from "./components/create";
+import Edit from "./components/edit";
 
 // Initialize Google Analytics
 ReactGA.initialize(process.env.REACT_APP_GA_CODE);
@@ -39,15 +44,17 @@ const App = () => {
     <ScrollReveal
       ref={childRef}
       children={() => (
-        <Switch>
-          <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
-          <AppRoute exact path="/Guide1" component={Guide1} layout={LayoutDefault} />
-          <AppRoute exact path="/FavoriteBikes" component={FavoriteBikes} layout={LayoutDefault} />
-          <AppRoute exact path="/Parts" component={Parts} layout={LayoutDefault} />
-          <AppRoute exact path="/ConversionKits" component={ConversionKits} layout={LayoutDefault} />
-        </Switch>
+        <Routes>
+           <Route path="/" element={<RecordList/>} layout={LayoutDefault} />
+           <Route path="/edit/:id" element={<Edit/>} layout={LayoutDefault} />
+           <Route path="/create" element={<Create/>} layout={LayoutDefault} />
+          <Route path="/r" element={<Home/>} layout={LayoutDefault} />
+          <Route path="/Guide1" element={<Guide1/>} layout={LayoutDefault} />
+          <Route path="/FavoriteBikes" element={<FavoriteBikes/>} layout={LayoutDefault} />
+          <Route path="/Parts" element={<Parts/>} layout={LayoutDefault} />
+          <Route path="/ConversionKits" element={<ConversionKits/>} layout={LayoutDefault} />
+        </Routes>
       )} />
   );
 }
-
 export default App;
