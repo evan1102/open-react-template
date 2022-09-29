@@ -1,36 +1,47 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import classNames from 'classnames';
 import { SectionSplitProps } from '../../utils/SectionProps';
 import SectionHeader from './partials/SectionHeader';
 import Image from '../elements/Image';
 import { products, mypicks } from '../elements/dummyData.js';
+import { useParams, useNavigate } from "react-router";
 
-//connecting to database
-// const {MongoClient} = require('mongodb');
-// const uri = "mongodb+srv://evanhorowitz:11Cedar!@ebikes.iwmk6u9.mongodb.net/test?retryWrites=true&w=majority";
-// const client = new MongoClient(uri);
+const axios = require('axios').default;
 
-// async function listDatabases(client){
-//   const databasesList = await client.db().admin().listDatabases();
+//get database response
+const AdsContainer = ({children}) => {
+  const [data, setData] = useState();
 
-//   console.log("Databases:");
-//   databasesList.databases.forEach(db => console.log(` - ${db.name}`));
-// };
+  useEffect(() => {
+    const mydata= async()=>{
+     const response = await fetch('http://localhost:5000/record/63336f88cc64e0e344d42ea7')
+     const respjson = await response.json()
+     console.log("json", respjson);
+     setData(respjson)}
+     mydata()
+    
+  }, [])
+  return (
+    <div className="AdsContainer">
+      <h6>{data?.Manufacturer}</h6>
+    </div>
+  )
+}
 
-// async function connectdb(){
-//   try {
-//   await client.connect();
+// const AdsContainer = axios.get('http://localhost:5000/record/63336f88cc64e0e344d42ea7')
+//   .then(function (response) {
+//     // handle success
+//     console.log(response);
+//   })
+//   .catch(function (error) {
+//     // handle error
+//     console.log(error);
+//   })
+//   .then(function () {
+//     // always executed
+//   });
 
-//   await listDatabases(client);
-
-// } catch (e) {
-//   console.error(e);
-// }
-  //finally {
-   // await client.close();
-  //}
-//}
-//connectdb()
+//const Myresp = fetch('http://localhost:5000/record/63336f88cc64e0e344d42ea7').then((res)=>console.log(res.json()))
 
 const propTypes = {
   ...SectionSplitProps.types
@@ -94,7 +105,7 @@ const SplitProductsList = ({
             <div className="split-item">
               <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
                 <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
-                  Manufacturer Name
+                  <AdsContainer/>
                   </div>
                 <h3 className="mt-0 mb-12">
                 Model Name
@@ -178,6 +189,5 @@ const SplitProductsList = ({
 
 SplitProductsList.propTypes = propTypes;
 SplitProductsList.defaultProps = defaultProps;
-//client.close()
 
 export default SplitProductsList;
