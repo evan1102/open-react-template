@@ -9,15 +9,14 @@ import { useParams, useNavigate } from "react-router";
 const axios = require('axios').default;
 
 //get database response
-const AdsContainer = ({children}) => {
+const AdsContainer = () => {
   const [data, setData] = useState();
 
   useEffect(() => {
     const mydata= async()=>{
      const response = await fetch('http://localhost:5000/record/63336f88cc64e0e344d42ea7')
-     const respjson = await response.json()
-     console.log("json", respjson);
-     setData(respjson)}
+     const respJSON = await response.json()
+     setData(respJSON)}
      mydata()
     
   }, [])
