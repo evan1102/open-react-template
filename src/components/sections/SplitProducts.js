@@ -6,41 +6,22 @@ import Image from '../elements/Image';
 import { products, mypicks } from '../elements/dummyData.js';
 import { useParams, useNavigate } from "react-router";
 
-const axios = require('axios').default;
-
 //get database response
-const AdsContainer = () => {
-  const [data, setData] = useState();
-
+const DataFetcher = (props) => {
+  const [data, setData] = useState()
   useEffect(() => {
     const mydata= async()=>{
-     const response = await fetch('http://localhost:5000/record/63336f88cc64e0e344d42ea7')
+     const response = await fetch(`http://localhost:5000/record/${props.id}`)
      const respJSON = await response.json()
-     setData(respJSON)}
+     setData(respJSON[props.field])}
      mydata()
-    
-  }, [])
+  }, [props.id,props.field])
   return (
-    <div className="AdsContainer">
-      <h6>{data?.Manufacturer}</h6>
+    <div className="DataFetcher">
+      {data}
     </div>
   )
 }
-
-// const AdsContainer = axios.get('http://localhost:5000/record/63336f88cc64e0e344d42ea7')
-//   .then(function (response) {
-//     // handle success
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//     // handle error
-//     console.log(error);
-//   })
-//   .then(function () {
-//     // always executed
-//   });
-
-//const Myresp = fetch('http://localhost:5000/record/63336f88cc64e0e344d42ea7').then((res)=>console.log(res.json()))
 
 const propTypes = {
   ...SectionSplitProps.types
@@ -104,7 +85,7 @@ const SplitProductsList = ({
             <div className="split-item">
               <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
                 <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
-                  <AdsContainer/>
+                  <DataFetcher id="63336f88cc64e0e344d42ea7" field="Manufacturer"/>
                   </div>
                 <h3 className="mt-0 mb-12">
                 Model Name

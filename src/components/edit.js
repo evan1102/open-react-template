@@ -9,6 +9,7 @@ export default function Edit() {
    records: [],
  });
  const params = useParams();
+ console.log(params)
  const navigate = useNavigate();
  
  useEffect(() => {
