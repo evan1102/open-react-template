@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import AppRoute from './utils/AppRoute';
 import ScrollReveal from './utils/ScrollReveal';
 import ReactGA from 'react-ga';
+
 
 // Layouts
 import LayoutDefault from './layouts/LayoutDefault';
@@ -13,12 +13,10 @@ import Guide1 from './views/Guide1';
 import FavoriteBikes from './views/FavoriteBikes';
 import ConversionKits from './views/ConversionKits';
 import Parts from './views/Parts';
-
 // Database
 import RecordList from "./components/recordList";
 import Create from "./components/create";
 import Edit from "./components/edit";
-//import Navbar from "./components/navbar";
 
 // Initialize Google Analytics
 ReactGA.initialize(process.env.REACT_APP_GA_CODE);
@@ -29,7 +27,6 @@ const trackPage = page => {
 };
 
 const App = () => {
-
   const childRef = useRef();
   let location = useLocation();
 

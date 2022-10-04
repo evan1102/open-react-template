@@ -3,8 +3,8 @@ import classNames from 'classnames';
 import { SectionSplitProps } from '../../utils/SectionProps';
 import SectionHeader from './partials/SectionHeader';
 import Image from '../elements/Image';
-import { products, mypicks } from '../elements/dummyData.js';
-import { useParams, useNavigate } from "react-router";
+import ButtonGroup from '../elements/ButtonGroup';
+import Button from '../elements/Button';
 
 //get database response
 const DataFetcher = (props) => {
@@ -17,12 +17,47 @@ const DataFetcher = (props) => {
      mydata()
   }, [props.id,props.field])
   return (
-    <div className="DataFetcher">
+    <>
       {data}
-    </div>
+    </>
   )
 }
 
+const PicFetcher = (props) => {
+  const [data, setData] = useState()
+  useEffect(() => {
+    const mydata= async()=>{
+     const response = await fetch(`http://localhost:5000/record/${props.id}`)
+     const respJSON = await response.json()
+     setData(respJSON[props.field])}
+     mydata()
+  }, [props.id,props.field, props.alt, props.width, props.height])
+  return (
+    <Image
+                  src= {data}
+                  alt= {props.alt}
+                  width={props.width}
+                  height={props.height} />
+  )
+  }
+
+  const ButtonFetcher = (props) => {
+    const [data, setData] = useState()
+    useEffect(() => {
+      const mydata= async()=>{
+       const response = await fetch(`http://localhost:5000/record/${props.id}`)
+       const respJSON = await response.json()
+       setData(respJSON[props.field])}
+       mydata()
+    }, [props.id,props.field, props.text])
+    return (
+      <ButtonGroup>
+      <Button href = {data} target="_blank" tag="a" color="primary">
+        {props.text}
+        </Button>
+    </ButtonGroup>
+    )
+    }
 const propTypes = {
   ...SectionSplitProps.types
 }
@@ -85,13 +120,14 @@ const SplitProductsList = ({
             <div className="split-item">
               <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
                 <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
-                  <DataFetcher id="63336f88cc64e0e344d42ea7" field="Manufacturer"/>
+                  <DataFetcher id="6336f66abb4ba7c001f02042" field="Manufacturer"/>
                   </div>
                 <h3 className="mt-0 mb-12">
-                Model Name
+                <DataFetcher id="6336f66abb4ba7c001f02042" field="Model"/>
                   </h3>
+                  <ButtonFetcher id="6336f66abb4ba7c001f02042" field="Website URL" text= "Go to Website" />
                 <p className="m-0">
-                  Bike Description
+                <DataFetcher id="6336f66abb4ba7c001f02042" field="Description"/>
                   </p>
               </div>
               <div className={
@@ -100,8 +136,9 @@ const SplitProductsList = ({
                   imageFill && 'split-item-image-fill'
                 )}
                 data-reveal-container=".split-item">
-                <Image
-                  src='https://media.wired.com/photos/5d605bf9f0b4760008c896a3/master/w_1920%2Cc_limit/9-RadRunner-Green-TA.jpg'
+                <PicFetcher
+                  id= '6336f66abb4ba7c001f02042'
+                  field= "Picture URL"
                   alt="Features split 01"
                   width={528}
                   height={396} />
@@ -109,7 +146,7 @@ const SplitProductsList = ({
             </div>
 
             <div className="split-item">
-              <div className="split-item-content center-content-mobile reveal-from-right" data-reveal-container=".split-item">
+              <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
                 <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
                 Manufacturer Name
                   </div>
