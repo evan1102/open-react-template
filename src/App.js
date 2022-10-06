@@ -13,7 +13,9 @@ import Guide1 from './views/Guide1';
 import FavoriteBikes from './views/FavoriteBikes';
 import ConversionKits from './views/ConversionKits';
 import Parts from './views/Parts';
-// Database
+import Quiz from './views/Quiz';
+
+// Database access pages
 import RecordList from "./components/recordList";
 import Create from "./components/create";
 import Edit from "./components/edit";
@@ -46,6 +48,7 @@ const App = () => {
           <LayoutDefault>
         <Routes>
            <Route path="/" element={<RecordList/>} />
+           <Route path="/Quiz" element={<Quiz/>} />
            <Route path="/edit/:id" element={<Edit/>} />
            <Route path="/create" element={<Create/>} />
           <Route path="/r" element={<Home/>}/>
