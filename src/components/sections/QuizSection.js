@@ -103,6 +103,8 @@ const QuizSection = ({
       ...rank
     }))
     console.log('userprofile',userProfile)
+
+    //clear previous rank list
     setrank([])
 
     if(questions[currentQuestion]['questionText'] === 'Rank what is most important to you. Rank at least two.'){
@@ -117,7 +119,7 @@ const QuizSection = ({
     }
   }
 
-  const handleAnswerOptionClick = (answerOption) => {
+  const handleAnswerOptionClick = (answerOption,id) => {
     //adds the selected answer to the rank array or removes it if it is already there
 
     if(questions[currentQuestion]['questionText'] === 'Rank what is most important to you. Rank at least two.'){
@@ -127,8 +129,9 @@ const QuizSection = ({
     //following removes the answer from the array if it already exists
     if (rank.includes(answerOption)){
       setrank((rank) => rank.filter((_, index) => index !== 0));
+
       //then change color of button
-      //document.getElementsByName()
+      document.getElementById(id).style.background='#000000';
     } 
     //following adds the answer to te rank array if it doesnt already exist
     else{
@@ -159,8 +162,8 @@ const QuizSection = ({
 						<div className='question-text'>{questions[currentQuestion].questionText}</div>
 					</div>
 					<div className='answer-section'>
-						{questions[currentQuestion].answerOptions.map((answerOption) => (
-							<button onClick={()=>{setanswerSelected(true)}} style={{backgroundColor:answerSelected==true?"blue":""}} onClick={() => handleAnswerOptionClick(answerOption.answerText)}>{answerOption.answerText}</button>))}
+						{questions[currentQuestion].answerOptions.map((answerOption,id) => (
+							<button id= {id} onClick={() => handleAnswerOptionClick(answerOption.answerText,id)}>{answerOption.answerText}</button>))}
               
 					</div>
           <div>
