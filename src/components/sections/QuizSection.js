@@ -93,15 +93,26 @@ const QuizSection = ({
 
 
   const handleNextButtonClick = () => {
+
+    //dont let user press next button unless they have selected at least one option
+    if (rank.length === 0 ){
+      alert('Choose at least one option')
+      return
+    }
+
     //passes user choices into the userProfile state object, and goes to next question 
     
+
+    //clear all button colors
+    document.querySelectorAll('button').forEach(but => but.style.background = '')
+
+
     console.log('passed',rank)
 
     const nextQuestion = currentQuestion + 1;
-    setuserProfile(userProfile => ({
-      ...userProfile,
-      ...rank
-    }))
+    setuserProfile(userProfile => (
+      {...{userProfile},rank}
+    ))
     console.log('userprofile',userProfile)
 
     //clear previous rank list
@@ -128,14 +139,21 @@ const QuizSection = ({
 
     //following removes the answer from the array if it already exists
     if (rank.includes(answerOption)){
-      setrank((rank) => rank.filter((_, index) => index !== 0));
+      setrank((rank) => rank.filter(item=> item !== answerOption));
 
-      //then change color of button
-      document.getElementById(id).style.background='#000000';
+      //then change color of button if it was highlighted
+      if (document.getElementById(id).style.background==='grey'){
+      document.getElementById(id).style.background='';
+      }
     } 
-    //following adds the answer to te rank array if it doesnt already exist
+    //following adds the answer to the rank array if it doesnt already exist
     else{
-    setrank([...rank, answerOption])
+      setrank([...rank, answerOption])
+      //then change color of button if it was highlighted
+      if (document.getElementById(id).style.background===''){
+        document.getElementById(id).style.background='grey';
+        }
+
     }
     console.log('selected',rank)
 
