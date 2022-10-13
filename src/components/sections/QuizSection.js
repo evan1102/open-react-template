@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
+import { json } from 'react-router';
 
 const propTypes = {
   children: PropTypes.node,
@@ -127,7 +128,19 @@ const QuizSection = ({
 			setCurrentQuestion(nextQuestion);
 		} else {
 			setShowScore(true);
+
+    // if the quiz is done, create a userProfile object for the user
+      const userProfileJSON = {
+        [questions[0]['questionText']]: userProfile['userProfile']['userProfile']['userProfile']['rank'],
+        [questions[1]['questionText']]: userProfile['userProfile']['userProfile']['rank'],
+        [questions[2]['questionText']]: userProfile['userProfile']['rank'],
+        [questions[3]['questionText']]: userProfile['rank'],
+        [questions[4]['questionText']]: rank
+      }
+      console.log('Full User Profile JSON:',userProfileJSON)
     }
+      ///here put code from guide 1 under if showscore = true
+
   }
 
   const handleAnswerOptionClick = (answerOption,id) => {
@@ -169,7 +182,7 @@ const QuizSection = ({
         <div className='app'>
 			{showScore ? (
 				<div className='score-section'>
-					You scored {} out of {questions.length}
+					paste html of guide1 section here
 				</div>
 			) : (
 				<>
