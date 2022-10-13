@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
 import { json } from 'react-router';
+import '../../App.css'
 
 const propTypes = {
   children: PropTypes.node,
